@@ -116,7 +116,7 @@ for platform_build_job in all_platform_build_jobs:
 
     matrices[platform_build_job.platform] = matrix_dictionary
 
-
+print("Setting Variables below")
 print(f"##vso[task.setVariable variable=linux;isOutput=true]{json.dumps(matrices['linux'])}")
 print(f"##vso[task.setVariable variable=windows;isOutput=true]{json.dumps(matrices['windows'])}")
 print(f"##vso[task.setVariable variable=mac;isOutput=true]{json.dumps(matrices['mac'])}")
