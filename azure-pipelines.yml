@@ -1,0 +1,28 @@
+jobs:
+- job: MatricesGenerator
+  steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.7'
+      addToPath: true
+  - bash: python generate-ap-matrices.py
+    name: mtrx
+
+- job: LinuxRunner
+  dependsOn: MatricesGenerator
+  strategy:
+    matrix: $[ dependencies.generator.outputs['mtrx.linux'] ]
+  steps:
+  - script: env
+- job: MacRunner
+  dependsOn: MatricesGenerator
+  strategy:
+    matrix: $[ dependencies.generator.outputs['mtrx.mac'] ]
+  steps:
+  - script: env
+- job: WindowsRunner
+  dependsOn: MatricesGenerator
+  strategy:
+    matrix: $[ dependencies.generator.outputs['mtrx.windows'] ]
+  steps:
+  - script: set
