@@ -13,7 +13,7 @@ jobs:
     vmImage: ubuntu-16.04
   dependsOn: MatricesGenerator
   strategy:
-    matrix: $[ dependencies.generator.outputs['mtrx.linux'] ]
+    matrix: $[ dependencies.MatricesGenerator.outputs['mtrx.linux'] ]
   steps:
   - script: env
 - job: MacRunner
@@ -21,7 +21,7 @@ jobs:
     vmImage: macOS-10.14
   dependsOn: MatricesGenerator
   strategy:
-    matrix: $[ dependencies.generator.outputs['mtrx.mac'] ]
+    matrix: $[ dependencies.MatricesGenerator.outputs['mtrx.mac'] ]
   steps:
   - script: env
 - job: WindowsRunner
@@ -29,6 +29,6 @@ jobs:
     vmImage: vs2017-win2016
   dependsOn: MatricesGenerator
   strategy:
-    matrix: $[ dependencies.generator.outputs['mtrx.windows'] ]
+    matrix: $[ dependencies.MatricesGenerator.outputs['mtrx.windows'] ]
   steps:
   - script: set
